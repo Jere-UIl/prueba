@@ -1,0 +1,39 @@
+# Aethera — Cinematic Hero Section
+
+A fullscreen React + Vite + TypeScript + Tailwind hero section with a
+custom fade in/out looping video background.
+
+## Setup
+
+```bash
+npm install
+npm run dev
+```
+
+Then open the printed local URL (typically http://localhost:5173).
+
+## Structure
+
+```
+src/
+  components/
+    VideoBackground.tsx   # rAF-driven fade in/out manual video loop
+    Navbar.tsx             # logo + nav links + CTA
+    Hero.tsx               # headline, description, CTA
+  styles/
+    fonts.css              # Instrument Serif + Inter imports
+    theme.css               # fade-rise entrance animations
+  App.tsx
+  main.tsx
+  index.css
+```
+
+## Notes
+
+- The video loop is handled manually (no native `loop` attribute): a
+  `requestAnimationFrame` loop watches `currentTime` / `duration` to fade
+  the video in over the first 0.5s and out over the last 0.5s. On the
+  native `ended` event, opacity drops to 0, then after 100ms the video
+  seeks back to `0` and replays — producing a seamless crossfade loop.
+- Colors (`#000000`, `#6F6F6F`, `#FFFFFF`) and the `background` Tailwind
+  color token are defined in `tailwind.config.js`.
